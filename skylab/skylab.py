@@ -6,14 +6,15 @@ import random
 import urllib.parse
 import webbrowser
 
-import api
 import tzlocal
-from api import Launch
 from textual.app import App, ComposeResult
 from textual.color import Color
 from textual.containers import Container
 from textual.reactive import reactive
 from textual.widgets import Button, Footer, Header, Static
+
+import skylab.api
+from skylab.api import Launch
 
 CURR_DIR = os.path.dirname(os.path.abspath(__file__))
 LOCAL_TIMEZONE = tzlocal.get_localzone()
@@ -98,7 +99,7 @@ class SkylabApp(App):
         """Initialize SkylabApp."""
         super().__init__(*args, **kwargs)
         self.launch_widget_list = [
-            LaunchWidget(launch=launch) for launch in api.launch_factory()
+            LaunchWidget(launch=launch) for launch in skylab.api.launch_factory()
         ]
 
     def on_mount(self) -> None:

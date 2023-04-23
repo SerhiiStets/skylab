@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Skylab entry point."""
 
-from skylab import SkylabApp
+from skylab.skylab import SkylabApp
 
 
 def main():

@@ -18,6 +18,9 @@ requests = "^2.28.2"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.poetry.scripts]
+skylab = "skylab.__main__:main"
+
 
 [tool.black]
 line-length = 88
