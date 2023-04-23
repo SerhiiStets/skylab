@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "skylab"
 version = "0.1.0"
-description = ""
+description = "A TUI for showing latest upcomming rocket launches."
 authors = ["SerhiiStets <stets.serhii@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -10,9 +10,19 @@ readme = "README.md"
 python = "^3.9"
 pytest = "^7.3.1"
 textual = {extras = ["dev"], version = "^0.19.1"}
-requests = "^2.28.2"
 pydantic = "^1.10.7"
+tzlocal = "^4.3"
+requests = "^2.28.2"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+py_version = 39

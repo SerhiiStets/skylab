@@ -1,4 +1,4 @@
-LaunchWidget { 
+LaunchWidget {
   layout: grid;
   grid-size: 2 1;
   grid-gutter:2;
@@ -8,7 +8,7 @@ LaunchWidget {
   padding-top: 2;
   padding-bottom: 2;
   height: 15;
-} 
+}
 
 TimeDisplay {
   content-align: center middle;
@@ -19,5 +19,5 @@ TimeDisplay {
 #watch_button{
   dock:right;
   height: 3;
-  content-align: center middle; 
+  content-align: center middle;
 }
