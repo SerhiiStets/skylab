@@ -14,7 +14,7 @@ from textual.reactive import reactive
 from textual.widgets import Button, Footer, Header, Static
 
 import skylab.api
-from skylab.api import Launch
+from skylab.models import Launch
 
 CURR_DIR = os.path.dirname(os.path.abspath(__file__))
 LOCAL_TIMEZONE = tzlocal.get_localzone()
@@ -64,9 +64,15 @@ class LaunchWidget(Static):
         self.launch: Launch = kwargs.pop("launch")
         super().__init__(*args, **kwargs)
         self._net = datetime.datetime.fromisoformat(self.launch.net[:-1])
+        self._launch_time = Static(
+            f"{LOCAL_TIMEZONE.localize(self._net)}\n", classes="launch-time"
+        )
+        self._launch_provider = Static(f"{self.launch.launch_service_provider.name}\n")
+        self._rocket_name = Static(f"{self.launch.rocket.full_name}\n")
+        self._launch_pad = Static(
+            f"{self.launch.pad.name}, {self.launch.pad.address}\n"
+        )
         self._description = Static(f"{self.launch.mission.description}")
-        self._rocket_name = Static(f"Rocket: {self.launch.rocket.full_name}\n")
-        self._launch_time = Static(f"{LOCAL_TIMEZONE.localize(self._net)}\n")
 
     def on_button_pressed(self) -> None:
         """
@@ -81,7 +87,13 @@ class LaunchWidget(Static):
 
     def compose(self) -> ComposeResult:
         """Creates a child widget of LaunchWidget."""
-        yield Container(self._launch_time, self._rocket_name, self._description)
+        yield Container(
+            self._launch_time,
+            self._launch_provider,
+            self._rocket_name,
+            self._launch_pad,
+            self._description,
+        )
         yield Container(
             TimeDisplay(launch_time=self._net, id="time-left"),
             Button("Watch", id="watch_button"),
@@ -109,12 +121,12 @@ class SkylabApp(App):
         background-color, border_title, etc.
         """
         for launch_widget in self.launch_widget_list:
-            colors = [
+            launch_widget.styles.background = Color(
                 random.randint(0, 255),
                 random.randint(0, 255),
                 random.randint(0, 255),
-            ]
-            launch_widget.styles.background = Color(*colors, a=0.45)
+                0.45,
+            )
             launch_widget.styles.border = ("round", "white")
             launch_widget.border_title = launch_widget.launch.name
             launch_widget.styles.border_title_align = "left"

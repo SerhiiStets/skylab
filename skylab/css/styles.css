@@ -2,12 +2,13 @@ LaunchWidget {
   layout: grid;
   grid-size: 2 1;
   grid-gutter:2;
+  grid-columns: 2fr 1fr;
   margin: 3;
   padding-left: 5;
   padding-right: 5;
   padding-top: 2;
   padding-bottom: 2;
-  height: 15;
+  height: 16;
 }
 
 TimeDisplay {
@@ -20,4 +21,8 @@ TimeDisplay {
   dock:right;
   height: 3;
   content-align: center middle;
+}
+
+.launch-time {
+  text-style: bold;
 }
