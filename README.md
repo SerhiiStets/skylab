@@ -2,6 +2,10 @@
 
 Skylab is a text user interface (TUI) tool that displays upcoming space launches in a user-friendly way.
 
+![skylab](https://i.imgur.com/96seWOP.png)
+
+Skylab is built using the [Textual](https://github.com/Textualize/textual) framework.
+
 ## Instalation
 
 To install Skylab using pip, run the following command:
