@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "skylab"
-version = "0.1.1"
+version = "0.1.2"
 description = "A TUI for showing latest upcoming rocket launches."
 authors = ["SerhiiStets <stets.serhii@gmail.com>"]
 license = "MIT"
