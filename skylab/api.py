@@ -1,17 +1,21 @@
 """Api module for receiving data from thespacedevs."""
+import datetime
 
 import requests
 
 from skylab.models import Launch
 
-GET_UPCOMING_LAUNCHES = "https://lldev.thespacedevs.com/2.2.0/launch/upcoming/"
+GET_UPCOMING_LAUNCHES = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/"
 
 
 def get_upcoming_laucnhes(url: str, timeout: float = 5.0) -> dict:
     """Get request for upcoming launches."""
-    response = requests.get(url, timeout=timeout)
-    response.raise_for_status()
-    return response.json()
+    try:
+        response = requests.get(url, timeout=timeout)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as ex:
+        raise ValueError(f"Failed to retrieve upcoming launches: {ex}.")
 
 
 def launch_factory() -> list[Launch]:
@@ -19,6 +23,11 @@ def launch_factory() -> list[Launch]:
     results = get_upcoming_laucnhes(GET_UPCOMING_LAUNCHES)["results"]
     launches = []
     for launch_dict in results:
+        # checking if the launch date is not expired
+        net = datetime.datetime.fromisoformat(launch_dict["net"][:-1])
+        if net < datetime.datetime.now():
+            continue
+
         # removing "configuration" nested layer from given data
         rocket_config = launch_dict["rocket"].pop("configuration")
         launch_dict["rocket"].update(rocket_config)

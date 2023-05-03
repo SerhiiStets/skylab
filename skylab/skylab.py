@@ -104,7 +104,10 @@ class SkylabApp(App):
     """Skylab TUI app."""
 
     TITLE = "skylab"
-    BINDINGS = [("d", "exit", "Exit skylab.")]
+    BINDINGS = [
+        ("d", "exit", "Exit skylab."),
+        ("?", "", "SpaceDev API is free but allows no more than 15 requests per hour"),
+    ]
     CSS_PATH = os.path.join(CURR_DIR, "css/styles.css")
 
     def __init__(self, *args, **kwargs):
