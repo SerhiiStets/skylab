@@ -1,4 +1,4 @@
-from skylab.models import Launch, LaunchPad, LaunchProvier, Mission, Rocket
+from skylab.launch_models import Launch, LaunchPad, LaunchProvier, Mission, Rocket
 
 
 def test_launch_default_values():

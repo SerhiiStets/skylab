@@ -1,9 +1,37 @@
+.bg-text{
+  text-opacity: 70%;
+}
+
+
+.title{
+  text-style: underline;
+}
+
+#title-grid{
+  layout: grid;
+  grid-size: 2 1;
+  height: 1;
+  margin-left: 3;
+  margin-top: 1;
+  margin-bottom: 1;
+  grid-columns: 2fr 1fr;
+  grid-gutter:3;
+}
+
+#window-split {
+  layout: grid;
+  grid-size: 2 1;
+  grid-columns: 2fr 1fr;
+}
+
 LaunchWidget {
   layout: grid;
   grid-size: 2 1;
   grid-gutter:2;
-  grid-columns: 2fr 1fr;
-  margin: 3;
+  grid-columns: 4fr 1fr;
+  margin-left: 2;
+  margin-right: 2;
+  margin-bottom: 2;
   padding-left: 5;
   padding-right: 5;
   padding-top: 2;
@@ -11,18 +39,36 @@ LaunchWidget {
   height: 16;
 }
 
-TimeDisplay {
-  content-align: center middle;
-  text-opacity: 60%;
-  height: 3;
-}
 
-#watch_button{
-  dock:right;
-  height: 3;
+#right-launch-widget{
+  width: 20;
+  grid-gutter: 1 4;
   content-align: center middle;
 }
 
-.launch-time {
-  text-style: bold;
+#launch-counter{
+  content-align: center middle;
+  height: 3;
+}
+
+#watch-button{
+  align: center middle;
+  width: 100%;
+}
+
+/* Event widgets */
+
+EventWidget{
+  padding: 1;
+  margin-left: 2;
+  margin-right: 2;
+  margin-bottom: 2;
+}
+
+.event-buttons{
+  layout: grid;
+  grid-size: 2 1;
+  grid-columns: 1fr 1fr;
+  grid-gutter:2;
+  height: 3;
 }

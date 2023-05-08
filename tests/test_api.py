@@ -1,8 +1,8 @@
 import pytest
 import requests
 
-from skylab.api import get_upcoming_laucnhes, launch_factory
-from skylab.models import Launch
+from skylab.api import SpaceDevApi
+from skylab.models.launch_models import Launch
 
 MOCK_LAUNCHES = {
     "results": [
@@ -38,12 +38,14 @@ def mock_get_upcoming_launches(monkeypatch):
 
 
 def test_get_upcoming_launches(mock_get_upcoming_launches):
-    results = get_upcoming_laucnhes("https://mockurl.com")
+    api = SpaceDevApi()
+    results = api.get_request("https://mockurl.com")
     assert results == MOCK_LAUNCHES
 
 
 def test_launch_factory(mock_get_upcoming_launches):
-    launches = launch_factory()
+    api = SpaceDevApi()
+    launches = api.launch_factory()
     assert isinstance(launches, list)
     assert len(launches) == len(MOCK_LAUNCHES["results"])
     for launch in launches:
