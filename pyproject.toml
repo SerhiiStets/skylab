@@ -10,7 +10,7 @@ repository="https://github.com/SerhiiStets/skylab"
 [tool.poetry.dependencies]
 python = "^3.9"
 pytest = "^7.3.1"
-textual = {extras = ["dev"], version = "^0.19.1"}
+textual = {extras = ["dev"], version = "^0.24.1"}
 pydantic = "^1.10.7"
 tzlocal = "^4.3"
 requests = "^2.28.2"
