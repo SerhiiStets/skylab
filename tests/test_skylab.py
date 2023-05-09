@@ -1,8 +1,8 @@
 import pytest
 from textual.widgets import Static
 
-from skylab.models import Launch
-from skylab.skylab import LaunchWidget
+from skylab.models.launch_models import Launch
+from skylab.widgets.launch_widget import LaunchWidget
 
 CORRECT_MOCK_LAUNCHES = {
     "results": {
@@ -16,7 +16,7 @@ CORRECT_MOCK_LAUNCHES = {
 }
 
 
-class TestLaunchWidget:
+class Test:
     @pytest.fixture
     def launch(self):
         launch_json = CORRECT_MOCK_LAUNCHES["results"]
