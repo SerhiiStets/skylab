@@ -27,23 +27,23 @@ MOCK_LAUNCHES = {
 
 
 @pytest.fixture
-def mock_get_upcoming_launches(monkeypatch):
+def mock_get_request(monkeypatch):
     def mock_get(*args, **kwargs):
         response = requests.Response()
         response.status_code = 200
         response.json = lambda: MOCK_LAUNCHES
         return response
 
-    monkeypatch.setattr(requests, "get", mock_get)
+    monkeypatch.setattr(requests.Session, "get", mock_get)
 
 
-def test_get_upcoming_launches(mock_get_upcoming_launches):
+def test_get_upcoming_launches(mock_get_request):
     api = SpaceDevApi()
     results = api.get_request("https://mockurl.com")
     assert results == MOCK_LAUNCHES
 
 
-def test_launch_factory(mock_get_upcoming_launches):
+def test_launch_factory(mock_get_request):
     api = SpaceDevApi()
     launches = api.launch_factory()
     assert isinstance(launches, list)

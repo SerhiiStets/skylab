@@ -16,7 +16,7 @@ from skylab.widgets.launch_widget import LaunchWidget
 class SkylabApp(App):
     """Skylab TUI app."""
 
-    TITLE = "skylab"
+    TITLE = "Skylab"
     BINDINGS = [
         ("d", "exit", "Exit skylab."),
         ("?", "", "SpaceDev API is free but allows no more than 15 requests per hour"),
@@ -27,14 +27,14 @@ class SkylabApp(App):
         """Initialize SkylabApp."""
         super().__init__(*args, **kwargs)
         api_client = SpaceDevApi()
-        self.launch_widget_list = [
+        self._launch_widget_list = [
             LaunchWidget(launch=launch) for launch in api_client.launch_factory()
         ]
-        self.event_widget_list = [
+        self._event_widget_list = [
             EventWidget(event=event) for event in api_client.event_factory()
         ]
-        self.launch_widgets = Container(*self.launch_widget_list)
-        self.event_widgets = Container(*self.event_widget_list)
+        self._launch_widgets = Container(*self._launch_widget_list)
+        self._event_widgets = Container(*self._event_widget_list)
 
     def action_exit(self) -> None:
         """
@@ -48,7 +48,7 @@ class SkylabApp(App):
         Event handler for when widget added to the app.
         Changes style of given LaunchWidgets such as background.
         """
-        for launch_widget in self.launch_widget_list:
+        for launch_widget in self._launch_widget_list:
             launch_widget.styles.background = Color(
                 random.randint(0, 255),
                 random.randint(0, 255),
@@ -64,5 +64,5 @@ class SkylabApp(App):
             Static("Events", classes="title"),
             id="title-grid",
         )
-        yield Container(self.launch_widgets, self.event_widgets, id="window-split")
+        yield Container(self._launch_widgets, self._event_widgets, id="window-split")
         yield Footer()

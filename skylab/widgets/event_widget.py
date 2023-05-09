@@ -1,3 +1,5 @@
+"""Event widget of Skylab app."""
+
 import datetime
 import webbrowser
 
@@ -12,6 +14,7 @@ class EventWidget(Static):
     """Event object Static."""
 
     def __init__(self, *args, **kwargs) -> None:
+        """Initialize Event widget."""
         self.event: Event = kwargs.pop("event")
         super().__init__(*args, **kwargs)
         self._explore_disabled = False if self.event.news_url else True
@@ -33,6 +36,7 @@ class EventWidget(Static):
 
     def on_mount(self) -> None:
         """Event handler for when EventWidget is being mounted."""
+        # Set a delimeter as a gray border at the bottom of each widget.
         self.styles.border_bottom = ("hkey", "gray")
 
     def compose(self) -> ComposeResult:

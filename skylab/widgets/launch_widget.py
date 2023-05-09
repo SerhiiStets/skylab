@@ -1,22 +1,22 @@
+"""Launch widget of Skylab app."""
+
 import datetime
 import urllib.parse
 import webbrowser
 
-import tzlocal
 from textual.app import ComposeResult
 from textual.containers import Container, Vertical
 from textual.widgets import Button, Static
 
+from skylab import settings
 from skylab.models.launch_models import Launch
 from skylab.widgets.time_widget import TimeDisplay
-
-LOCAL_TIMEZONE = tzlocal.get_localzone()
 
 
 class LaunchWidget(Static):
     """Launch object Static."""
 
-    youtube_url = "https://www.youtube.com"
+    YOUTUBE_URL = "https://www.youtube.com"
 
     def __init__(self, *args, **kwargs) -> None:
         """Initialize LaunchWidget."""
@@ -25,7 +25,7 @@ class LaunchWidget(Static):
         super().__init__(*args, **kwargs)
         self._net = datetime.datetime.fromisoformat(self.launch.net[:-1])
         self._launch_time = Static(
-            f"{LOCAL_TIMEZONE.localize(self._net)}\n", classes="bg-text"
+            f"{settings.LOCAL_TIMEZONE.localize(self._net)}\n", classes="bg-text"
         )
         self._launch_provider = Static(f"{self.launch.launch_service_provider.name}\n")
         self._rocket_name = Static(f"{self.launch.rocket.full_name}\n")
@@ -55,7 +55,7 @@ class LaunchWidget(Static):
         """
         query = f"{self.launch.name} {self._net}"
         launch_url = (
-            f"{self.youtube_url}/results?search_query={urllib.parse.quote(query)}"
+            f"{self.YOUTUBE_URL}/results?search_query={urllib.parse.quote(query)}"
         )
         webbrowser.open(launch_url, new=2)
 

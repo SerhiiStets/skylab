@@ -11,7 +11,7 @@ from skylab.models.launch_models import Launch
 class SpaceDevApi:
     """Interface for interacting with SpaceDev API."""
 
-    BASE_URL = "https://lldev.thespacedevs.com/2.2.0"
+    BASE_URL = "https://ll.thespacedevs.com/2.2.0"
     GET_UPCOMING_LAUNCHES = f"{BASE_URL}/launch/upcoming/"
     GET_UPCOMING_EVENTS = f"{BASE_URL}/event/upcoming/"
 
