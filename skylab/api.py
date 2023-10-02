@@ -15,7 +15,7 @@ class SpaceDevApi:
     GET_UPCOMING_LAUNCHES = f"{BASE_URL}/launch/upcoming/"
     GET_UPCOMING_EVENTS = f"{BASE_URL}/event/upcoming/"
 
-    def __init__(self, timeout: float = 5.0) -> None:
+    def __init__(self, timeout: float = 10.0) -> None:
         """Initialize SpaceDevApi object."""
         self.timeout = timeout
         self.session = requests.Session()
