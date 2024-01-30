@@ -2,11 +2,9 @@ FROM python:3.9
 
 WORKDIR ./app
 
-COPY requirements.txt .
-COPY README.md .
+COPY . .
 
 RUN pip install -r requirements.txt
+RUN pip install -e .
 
-COPY ./skylab ./skylab
-
-CMD [ "python", "skylab"]
+CMD [ "skylab" ]
