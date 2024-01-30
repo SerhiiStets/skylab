@@ -41,4 +41,4 @@ jobs:
       run: python -c "import sys; print(sys.path)"
     - name: Test with pytest
       run: |
-        pytest
+        coverage run -m --source=skylab,tests pytest
